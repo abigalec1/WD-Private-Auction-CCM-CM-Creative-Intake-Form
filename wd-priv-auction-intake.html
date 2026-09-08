@@ -143,6 +143,20 @@
             color: #e74c3c;
             font-weight: 600;
         }
+        .field-warning {
+            font-size: 11px;
+            color: #b45309;
+            background: #FFF8E1;
+            border-left: 3px solid #F5A623;
+            border-radius: 4px;
+            padding: 6px 10px;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        .field-warning a {
+            color: #146EB4;
+            font-weight: 600;
+        }
         .entries-table {
             width: 100%;
             border-collapse: collapse;
@@ -401,22 +415,22 @@
         <button class="flow-btn active" onclick="selectFlow('templatized')" id="flow-templatized">
             <span class="flow-badge static">STATIC</span>
             🧩 Templatized
-            <span class="sla-tag">1 BD asset review + 3 BD design</span>
+            <span class="sla-tag">4–6 BD</span>
         </button>
         <button class="flow-btn" onclick="selectFlow('custom')" id="flow-custom">
             <span class="flow-badge static">STATIC</span>
             🎨 Custom
-            <span class="sla-tag long">1 BD asset review + 4 BD design</span>
+            <span class="sla-tag long">8–9 BD</span>
         </button>
         <button class="flow-btn" onclick="selectFlow('video-templatized')" id="flow-video-templatized">
             <span class="flow-badge video">VIDEO</span>
             🧩 Templatized
-            <span class="sla-tag">6 BD</span>
+            <span class="sla-tag">4–6 BD</span>
         </button>
         <button class="flow-btn" onclick="selectFlow('video')" id="flow-video">
             <span class="flow-badge video">VIDEO</span>
             🎬 Custom
-            <span class="sla-tag long">8–10 BD</span>
+            <span class="sla-tag long">8–9 BD</span>
         </button>
     </div>
 
@@ -474,7 +488,6 @@
                         <option value="">— Select Template —</option>
                         <option value="Gradient">Gradient — Smooth color gradient background</option>
                         <option value="Spotlight">Spotlight — Dramatic lighting effect</option>
-                        <option value="Textured Background">Textured Background (TBC)</option>
                     </select>
                 </div>
             </div>
@@ -534,6 +547,7 @@
                             <option value="">— Select Template —</option>
                             <option value="Solid">Solid — Clean solid color background with product focus</option>
                             <option value="Gradient">Gradient — Smooth color gradient background with product focus</option>
+                            <option value="Textured">Textured — Textured background with product focus</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -546,16 +560,20 @@
             <!-- ASIN -->
             <div class="form-row">
                 <div class="form-group">
-                    <label>ASIN <span class="required">*</span></label>
-                    <input type="text" id="asin" required placeholder="e.g. B09V3KXJPB">
+                    <label>ASIN <span class="required" id="asinRequired">*</span></label>
+                    <input type="text" id="asin" placeholder="e.g. B09V3KXJPB">
                 </div>
                 <div class="form-group">
                     <label>Landing Page URL <span class="required">*</span></label>
                     <input type="url" id="landingUrl" required placeholder="Brand Store or PDP link">
+                    <div class="field-warning">⚠️ Ad must link in.</div>
                 </div>
             </div>
 
             <!-- Copy -->
+            <div class="field-warning" style="margin-bottom:12px;">
+                ⚠️ All placements must use action-oriented messaging that directs customers to a clearly identified destination. See <a href="https://design.amazon.com/styleguide/724BA9F0B089/homepage-design-guidelines/general-guidelines/copy-and-messaging-basics/#gIvjt90xRGj0O7" target="_blank">Copy &amp; Messaging Basics</a>.
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     <label>Headline <span class="required">*</span> <span class="char-limit">(16 chars/line max)</span></label>
@@ -683,6 +701,12 @@
             bgSpecLabel.textContent = '(855×1368px PSD)';
         }
 
+        // ASIN is optional for Custom Static (non-endemic advertisers)
+        const asinRequired = document.getElementById('asinRequired');
+        if (asinRequired) {
+            asinRequired.style.display = (flow === 'custom') ? 'none' : 'inline';
+        }
+
         // Toggle asset checklists
         const flowLabelsMap = {
             templatized: 'Static — Templatized',
@@ -708,8 +732,14 @@
         const headline = document.getElementById('headline').value.trim();
         const landingUrl = document.getElementById('landingUrl').value.trim();
 
-        if (!advertiser || !campaignName || !asin || !headline || !landingUrl) {
-            alert('Please fill in all required fields (Advertiser, Campaign, ASIN, Headline, Landing URL).');
+        if (!advertiser || !campaignName || !headline || !landingUrl) {
+            alert('Please fill in all required fields (Advertiser, Campaign, Headline, Landing URL).');
+            return;
+        }
+
+        // ASIN required for all flows except Custom Static (non-endemic advertisers)
+        if (currentFlow !== 'custom' && !asin) {
+            alert('Please fill in the ASIN field.');
             return;
         }
 
