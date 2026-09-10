@@ -143,6 +143,19 @@
             color: #e74c3c;
             font-weight: 600;
         }
+        .form-group textarea.over-limit,
+        .form-group input.over-limit {
+            border-color: #e74c3c !important;
+            background: #fdf0ef;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12);
+        }
+        .line-warning {
+            font-size: 11px;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
         .field-warning {
             font-size: 11px;
             color: #b45309;
@@ -577,22 +590,35 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Headline <span class="required">*</span> <span class="char-limit">(16 chars/line max)</span></label>
-                    <textarea id="headline" maxlength="68" rows="2" placeholder="Up to 4 lines, 16 chars each"></textarea>
-                    <div class="char-counter" id="headlineCounter">0 / 68</div>
+                    <textarea id="headline" rows="2" placeholder="Up to 4 lines, 16 chars each"></textarea>
+                    <div class="char-counter" id="headlineCounter">0 chars</div>
+                    <div class="line-warning" id="headlineWarning" style="display:none;"></div>
                 </div>
                 <div class="form-group">
                     <label>Sub-headline <span class="char-limit">(23 chars/line max, optional)</span></label>
-                    <textarea id="subheadline" maxlength="48" rows="2" placeholder="Up to 2 lines, 23 chars each"></textarea>
-                    <div class="char-counter" id="subheadlineCounter">0 / 48</div>
+                    <textarea id="subheadline" rows="2" placeholder="Up to 2 lines, 23 chars each"></textarea>
+                    <div class="char-counter" id="subheadlineCounter">0 chars</div>
+                    <div class="line-warning" id="subheadlineWarning" style="display:none;"></div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>Disclaimer <span class="char-limit">(42 chars max — single line)</span></label>
-                    <input type="text" id="disclaimer" maxlength="42" placeholder="e.g. Terms and conditions apply.">
-                    <div class="char-counter" id="disclaimerCounter">0 / 42</div>
+                    <label>Market <span class="required">*</span></label>
+                    <select id="market" onchange="updateCharCounters()">
+                        <option value="US">US — 21 char disclaimer limit</option>
+                        <option value="Intl">CA / EU5 / JP / AU / MX — 42 char disclaimer limit</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label>Disclaimer <span class="char-limit" id="disclaimerLimitLabel">(21 chars max — single line)</span></label>
+                    <input type="text" id="disclaimer" placeholder="e.g. Terms and conditions apply.">
+                    <div class="char-counter" id="disclaimerCounter">0 / 21</div>
+                    <div class="line-warning" id="disclaimerWarning" style="display:none;"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group">
                     <label>Notes / Special Instructions</label>
                     <input type="text" id="notes" placeholder="Any additional context for the design team">
@@ -767,6 +793,7 @@
         rows.push({ type: 'field', label: 'Campaign Name', value: campaignName });
         rows.push({ type: 'field', label: 'Flight Dates', value: val('flightDates') || '—' });
         rows.push({ type: 'field', label: 'Creative Flow', value: flowLabels[flow] });
+        rows.push({ type: 'field', label: 'Market', value: (document.getElementById('market').value === 'US' ? 'US' : 'CA / EU5 / JP / AU / MX') });
 
         rows.push({ type: 'section', text: 'Creative Specs' });
         rows.push({ type: 'field', label: 'Logo 1', value: val('logo1') });
@@ -891,20 +918,61 @@
         updateCharCounters();
     }
 
-    // Character counters
+    // Character counters with per-line limit checking
+    function checkLineLimit(fieldId, counterId, warningId, perLineLimit, maxLines) {
+        const field = document.getElementById(fieldId);
+        const counter = document.getElementById(counterId);
+        const warning = document.getElementById(warningId);
+        const lines = field.value.split('\n');
+
+        const overLines = [];
+        lines.forEach((line, i) => {
+            if (line.length > perLineLimit) overLines.push(i + 1);
+        });
+        const tooManyLines = maxLines && lines.length > maxLines;
+
+        counter.textContent = `${field.value.replace(/\n/g, '').length} chars`;
+
+        if (overLines.length > 0 || tooManyLines) {
+            field.classList.add('over-limit');
+            counter.classList.add('over');
+            let msg = '';
+            if (overLines.length > 0) {
+                msg = `⚠️ Line${overLines.length > 1 ? 's' : ''} ${overLines.join(', ')} exceed${overLines.length > 1 ? '' : 's'} the ${perLineLimit}-character limit.`;
+            }
+            if (tooManyLines) {
+                msg += (msg ? ' ' : '') + `⚠️ Maximum ${maxLines} lines allowed.`;
+            }
+            warning.textContent = msg;
+            warning.style.display = 'block';
+        } else {
+            field.classList.remove('over-limit');
+            counter.classList.remove('over');
+            warning.style.display = 'none';
+        }
+    }
+
     function updateCharCounters() {
-        const headline = document.getElementById('headline');
-        const subheadline = document.getElementById('subheadline');
+        checkLineLimit('headline', 'headlineCounter', 'headlineWarning', 16, 4);
+        checkLineLimit('subheadline', 'subheadlineCounter', 'subheadlineWarning', 23, 2);
+
         const disclaimer = document.getElementById('disclaimer');
-
-        document.getElementById('headlineCounter').textContent = `${headline.value.length} / 68`;
-        document.getElementById('headlineCounter').classList.toggle('over', headline.value.length > 64);
-
-        document.getElementById('subheadlineCounter').textContent = `${subheadline.value.length} / 48`;
-        document.getElementById('subheadlineCounter').classList.toggle('over', subheadline.value.length > 46);
-
-        document.getElementById('disclaimerCounter').textContent = `${disclaimer.value.length} / 42`;
-        document.getElementById('disclaimerCounter').classList.toggle('over', disclaimer.value.length > 42);
+        const disclaimerCounter = document.getElementById('disclaimerCounter');
+        const disclaimerWarning = document.getElementById('disclaimerWarning');
+        const market = document.getElementById('market').value;
+        const dLimit = market === 'US' ? 21 : 42;
+        document.getElementById('disclaimerLimitLabel').textContent = `(${dLimit} chars max — single line)`;
+        disclaimerCounter.textContent = `${disclaimer.value.length} / ${dLimit}`;
+        if (disclaimer.value.length > dLimit) {
+            disclaimer.classList.add('over-limit');
+            disclaimerCounter.classList.add('over');
+            disclaimerWarning.textContent = `⚠️ Disclaimer exceeds the ${dLimit}-character limit for this market.`;
+            disclaimerWarning.style.display = 'block';
+        } else {
+            disclaimer.classList.remove('over-limit');
+            disclaimerCounter.classList.remove('over');
+            disclaimerWarning.style.display = 'none';
+        }
     }
 
     document.getElementById('headline').addEventListener('input', updateCharCounters);
