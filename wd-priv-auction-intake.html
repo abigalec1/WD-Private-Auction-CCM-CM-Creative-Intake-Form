@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WD Private Auction — Creative Intake Form</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
     <script>
     // Fallback: if XLSX library fails to load, we'll use CSV export
     window.addEventListener('load', function() {
@@ -755,58 +755,116 @@
             'video-templatized': 'Video — Templatized'
         };
 
-        const headers = [
-            'Creative Flow', 'Advertiser', 'Campaign Name', 'Flight Dates',
-            'Logo 1', 'Logo 2', 'Template Style', 'Copy Layout',
-            'Background Image', 'Video Asset', 'Video Condition', 'Video Template Style', 'Product Images',
-            'ASIN', 'Headline', 'Sub-headline', 'Disclaimer',
-            'Landing Page URL', 'Notes', 'APT Approval Link', 'Comments'
-        ];
+        const val = id => (document.getElementById(id) ? document.getElementById(id).value.trim() : '');
+        const flow = currentFlow;
+        const rows = [];
+        rows.push({ type: 'title', text: 'WD Private Auction — Creative Intake' });
+        rows.push({ type: 'subtitle', text: flowLabels[flow] + '  |  Submitted ' + new Date().toLocaleDateString() });
+        rows.push({ type: 'spacer' });
 
-        const isTemplatized = (currentFlow === 'templatized' || currentFlow === 'video-templatized');
+        rows.push({ type: 'section', text: 'Campaign Details' });
+        rows.push({ type: 'field', label: 'Advertiser Name', value: advertiser });
+        rows.push({ type: 'field', label: 'Campaign Name', value: campaignName });
+        rows.push({ type: 'field', label: 'Flight Dates', value: val('flightDates') || '—' });
+        rows.push({ type: 'field', label: 'Creative Flow', value: flowLabels[flow] });
 
-        const row = [
-            flowLabels[currentFlow],
-            advertiser,
-            campaignName,
-            document.getElementById('flightDates').value.trim(),
-            document.getElementById('logo1').value.trim(),
-            document.getElementById('logo2').value.trim(),
-            currentFlow === 'templatized' ? document.getElementById('templateStyle').value : 'N/A',
-            document.getElementById('copyLayout').value,
-            document.getElementById('bgImage').value.trim(),
-            currentFlow === 'video' ? document.getElementById('videoAsset').value.trim() : 'N/A',
-            currentFlow === 'video' ? document.getElementById('videoCondition').value : 'N/A',
-            currentFlow === 'video-templatized' ? document.getElementById('videoTemplateStyle').value : 'N/A',
-            currentFlow === 'video-templatized' ? document.getElementById('videoProductImages').value.trim() : 'N/A',
-            asin,
-            headline,
-            document.getElementById('subheadline').value.trim(),
-            document.getElementById('disclaimer').value.trim(),
-            landingUrl,
-            document.getElementById('notes').value.trim(),
-            document.getElementById('aptLink').value.trim(),
-            document.getElementById('comments').value.trim()
-        ];
+        rows.push({ type: 'section', text: 'Creative Specs' });
+        rows.push({ type: 'field', label: 'Logo 1', value: val('logo1') });
+        rows.push({ type: 'field', label: 'Logo 2 (co-brand)', value: val('logo2') || '—' });
+        if (flow === 'templatized') {
+            rows.push({ type: 'field', label: 'Template Style', value: val('templateStyle') });
+        }
+        if (flow === 'custom' || flow === 'video') {
+            rows.push({ type: 'field', label: 'Background Image', value: val('bgImage') || '—' });
+        }
+        if (flow === 'video') {
+            rows.push({ type: 'field', label: 'Video Asset', value: val('videoAsset') });
+            rows.push({ type: 'field', label: 'Video Condition', value: val('videoCondition') });
+        }
+        if (flow === 'video-templatized') {
+            rows.push({ type: 'field', label: 'Video Template Style', value: val('videoTemplateStyle') });
+            rows.push({ type: 'field', label: 'Product Images', value: val('videoProductImages') });
+        }
+        rows.push({ type: 'field', label: 'ASIN', value: asin || '—' });
+        rows.push({ type: 'field', label: 'Landing Page URL', value: landingUrl });
+
+        rows.push({ type: 'section', text: 'Copy' });
+        rows.push({ type: 'field', label: 'Copy Layout', value: val('copyLayout') });
+        rows.push({ type: 'field', label: 'Headline', value: headline });
+        rows.push({ type: 'field', label: 'Sub-headline', value: val('subheadline') || '—' });
+        rows.push({ type: 'field', label: 'Disclaimer', value: val('disclaimer') || '—' });
+
+        rows.push({ type: 'section', text: 'Approvals & Notes' });
+        rows.push({ type: 'field', label: 'APT Approval Link', value: val('aptLink') || '—' });
+        rows.push({ type: 'field', label: 'Notes', value: val('notes') || '—' });
+        rows.push({ type: 'field', label: 'Comments', value: val('comments') || '—' });
 
         const today = new Date().toISOString().slice(0, 10);
 
-        // Try XLSX first, fall back to CSV
         if (typeof XLSX !== 'undefined') {
-            const ws = XLSX.utils.aoa_to_sheet([headers, row]);
-            ws['!cols'] = [
-                { wch: 20 }, { wch: 20 }, { wch: 22 }, { wch: 16 },
-                { wch: 25 }, { wch: 25 }, { wch: 18 }, { wch: 30 },
-                { wch: 25 }, { wch: 25 }, { wch: 25 }, { wch: 20 }, { wch: 25 },
-                { wch: 14 }, { wch: 30 }, { wch: 30 }, { wch: 30 },
-                { wch: 40 }, { wch: 30 }, { wch: 40 }, { wch: 35 }
-            ];
+            const NAVY = '232F3E', ORANGE = 'FF9900', BLUE = '146EB4';
+            const LIGHT = 'F2F4F6', WHITE = 'FFFFFF';
+            const border = {
+                top: { style: 'thin', color: { rgb: 'D9DCE0' } },
+                bottom: { style: 'thin', color: { rgb: 'D9DCE0' } },
+                left: { style: 'thin', color: { rgb: 'D9DCE0' } },
+                right: { style: 'thin', color: { rgb: 'D9DCE0' } }
+            };
+
+            const aoa = [];
+            const merges = [];
+            const styles = {};
+
+            rows.forEach((r) => {
+                const ri = aoa.length;
+                if (r.type === 'title') {
+                    aoa.push([r.text, '']);
+                    merges.push({ s: { r: ri, c: 0 }, e: { r: ri, c: 1 } });
+                    styles[ri + ',0'] = { font: { bold: true, sz: 16, color: { rgb: WHITE } }, fill: { fgColor: { rgb: NAVY } }, alignment: { vertical: 'center' } };
+                    styles[ri + ',1'] = { fill: { fgColor: { rgb: NAVY } } };
+                } else if (r.type === 'subtitle') {
+                    aoa.push([r.text, '']);
+                    merges.push({ s: { r: ri, c: 0 }, e: { r: ri, c: 1 } });
+                    styles[ri + ',0'] = { font: { bold: true, sz: 11, color: { rgb: '232F3E' } }, fill: { fgColor: { rgb: ORANGE } }, alignment: { vertical: 'center' } };
+                    styles[ri + ',1'] = { fill: { fgColor: { rgb: ORANGE } } };
+                } else if (r.type === 'spacer') {
+                    aoa.push(['', '']);
+                } else if (r.type === 'section') {
+                    aoa.push([r.text, '']);
+                    merges.push({ s: { r: ri, c: 0 }, e: { r: ri, c: 1 } });
+                    styles[ri + ',0'] = { font: { bold: true, sz: 11, color: { rgb: WHITE } }, fill: { fgColor: { rgb: BLUE } }, alignment: { vertical: 'center' } };
+                    styles[ri + ',1'] = { fill: { fgColor: { rgb: BLUE } } };
+                } else if (r.type === 'field') {
+                    aoa.push([r.label, r.value]);
+                    styles[ri + ',0'] = { font: { bold: true, sz: 10, color: { rgb: NAVY } }, fill: { fgColor: { rgb: LIGHT } }, alignment: { vertical: 'top', wrapText: true }, border: border };
+                    styles[ri + ',1'] = { font: { sz: 10, color: { rgb: '2C3E50' } }, alignment: { vertical: 'top', wrapText: true }, border: border };
+                }
+            });
+
+            const ws = XLSX.utils.aoa_to_sheet(aoa);
+            ws['!cols'] = [{ wch: 28 }, { wch: 60 }];
+            ws['!merges'] = merges;
+            ws['!rows'] = [];
+            ws['!rows'][0] = { hpt: 28 };
+            ws['!rows'][1] = { hpt: 22 };
+
+            aoa.forEach((_, ri) => {
+                [0, 1].forEach(ci => {
+                    const addr = XLSX.utils.encode_cell({ r: ri, c: ci });
+                    const key = ri + ',' + ci;
+                    if (styles[key]) {
+                        if (!ws[addr]) ws[addr] = { t: 's', v: '' };
+                        ws[addr].s = styles[key];
+                    }
+                });
+            });
+
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'WD Creative Intake');
+            XLSX.utils.book_append_sheet(wb, ws, 'Creative Intake');
             XLSX.writeFile(wb, `WD_PrivAuction_Intake_${today}.xlsx`);
         } else {
-            // CSV fallback
-            const csvContent = [headers, row].map(r =>
+            const csvRows = rows.filter(r => r.type === 'field').map(r => [r.label, r.value]);
+            const csvContent = csvRows.map(r =>
                 r.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(',')
             ).join('\n');
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
