@@ -156,6 +156,16 @@
             margin-top: 4px;
             line-height: 1.4;
         }
+        .cta-flag {
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            background: #e74c3c;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
         .field-warning {
             font-size: 11px;
             color: #b45309;
@@ -602,6 +612,11 @@
                 </div>
             </div>
 
+            <!-- CTA / action-driving copy flag -->
+            <div class="cta-flag" id="ctaFlag" style="display:none;">
+                🚫 This copy may not be action-driving. Consider adding a clear call-to-action (e.g. Shop, Discover, Explore, etc).
+            </div>
+
             <div class="form-row">
                 <div class="form-group">
                     <label>Market <span class="required">*</span></label>
@@ -767,6 +782,12 @@
         if (currentFlow !== 'custom' && !asin) {
             alert('Please fill in the ASIN field.');
             return;
+        }
+
+        // Hard flag: warn strongly if copy is not action-driving
+        if (document.getElementById('ctaFlag').style.display === 'block') {
+            const proceed = confirm('⚠️ ACTION-DRIVING COPY REQUIRED\n\nThe headline/sub-headline does not appear to contain a clear call-to-action (e.g. Shop, Discover, Explore).\n\nAll placements must use action-oriented messaging. Are you sure you want to export anyway?');
+            if (!proceed) return;
         }
 
         if (!document.getElementById('assetConfirmation').checked) {
@@ -952,9 +973,45 @@
         }
     }
 
+    // Action-oriented copy (CTA) detection
+    const CTA_VERBS = [
+        'shop','buy','discover','explore','save','get','order','learn','find','browse',
+        'grab','try','see','view','watch','stream','download','join','sign up','subscribe',
+        'upgrade','unlock','claim','redeem','start','build','create','add','choose','pick',
+        'compare','check out','enjoy','experience','gift','give','celebrate','stock up',
+        'refresh','upgrade','meet','tap','click','visit','preorder','pre-order','reserve','book'
+    ];
+
+    function checkCTA() {
+        const headline = document.getElementById('headline').value.toLowerCase();
+        const subheadline = document.getElementById('subheadline').value.toLowerCase();
+        const combined = (headline + ' ' + subheadline).trim();
+        const ctaFlag = document.getElementById('ctaFlag');
+        const hError = document.getElementById('headline');
+        const sError = document.getElementById('subheadline');
+
+        // Only evaluate once the user has entered some copy
+        if (combined.length === 0) {
+            ctaFlag.style.display = 'none';
+            return;
+        }
+
+        const hasCTA = CTA_VERBS.some(verb => {
+            const re = new RegExp('\\b' + verb.replace(/[-\\/\\^$*+?.()|[\]{}]/g, '\\$&') + '\\b', 'i');
+            return re.test(combined);
+        });
+
+        if (!hasCTA) {
+            ctaFlag.style.display = 'block';
+        } else {
+            ctaFlag.style.display = 'none';
+        }
+    }
+
     function updateCharCounters() {
         checkLineLimit('headline', 'headlineCounter', 'headlineWarning', 16, 4);
         checkLineLimit('subheadline', 'subheadlineCounter', 'subheadlineWarning', 23, 2);
+        checkCTA();
 
         const disclaimer = document.getElementById('disclaimer');
         const disclaimerCounter = document.getElementById('disclaimerCounter');
