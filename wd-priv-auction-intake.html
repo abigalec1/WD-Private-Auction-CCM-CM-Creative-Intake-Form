@@ -180,31 +180,6 @@
             color: #146EB4;
             font-weight: 600;
         }
-        .entries-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            margin-top: 16px;
-        }
-        .entries-table th {
-            background: #f8f9fa;
-            padding: 10px 8px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid #e0e3e6;
-            white-space: nowrap;
-        }
-        .entries-table td {
-            padding: 8px;
-            border-bottom: 1px solid #f0f0f0;
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .entries-table tr:hover td {
-            background: #f8f9fa;
-        }
         .btn {
             padding: 10px 20px;
             border: none;
@@ -214,55 +189,23 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-primary {
-            background: #146EB4;
-            color: #fff;
-        }
-        .btn-primary:hover {
-            background: #0f5a94;
-        }
-        .btn-success {
-            background: #067D62;
-            color: #fff;
-        }
-        .btn-success:hover {
-            background: #056b54;
-        }
-        .btn-danger {
-            background: #e74c3c;
-            color: #fff;
-            padding: 6px 10px;
-            font-size: 11px;
-        }
-        .btn-danger:hover {
-            background: #c0392b;
-        }
-        .btn-secondary {
-            background: #6c757d;
-            color: #fff;
-        }
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-        .btn-warning {
-            background: #FF9900;
-            color: #232F3E;
-        }
-        .btn-warning:hover {
-            background: #e68a00;
-        }
+        .btn-primary { background: #146EB4; color: #fff; }
+        .btn-primary:hover { background: #0f5a94; }
+        .btn-success { background: #067D62; color: #fff; }
+        .btn-success:hover { background: #056b54; }
+        .btn-success:disabled { background: #a8c5bd; cursor: not-allowed; }
+        .btn-danger { background: #e74c3c; color: #fff; padding: 6px 10px; font-size: 11px; }
+        .btn-danger:hover { background: #c0392b; }
+        .btn-secondary { background: #6c757d; color: #fff; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-warning { background: #FF9900; color: #232F3E; }
+        .btn-warning:hover { background: #e68a00; }
         .actions-bar {
             display: flex;
             gap: 12px;
             margin-top: 20px;
             flex-wrap: wrap;
             align-items: center;
-        }
-        .entry-count {
-            margin-left: auto;
-            font-size: 13px;
-            color: #666;
-            font-weight: 500;
         }
         .flow-selector {
             display: flex;
@@ -284,13 +227,8 @@
             gap: 6px;
             white-space: nowrap;
         }
-        .flow-btn:hover {
-            border-color: #146EB4;
-        }
-        .flow-btn.active {
-            border-color: #146EB4;
-            background: #EBF5FF;
-        }
+        .flow-btn:hover { border-color: #146EB4; }
+        .flow-btn.active { border-color: #146EB4; background: #EBF5FF; }
         .flow-btn .flow-badge {
             padding: 2px 8px;
             border-radius: 10px;
@@ -311,21 +249,11 @@
             font-weight: 600;
             margin-left: 8px;
         }
-        .sla-tag.long {
-            background: #C7511F;
-        }
-        .video-fields {
-            display: none;
-        }
-        .video-fields.visible {
-            display: block;
-        }
-        .template-field {
-            display: none;
-        }
-        .template-field.visible {
-            display: flex;
-        }
+        .sla-tag.long { background: #C7511F; }
+        .video-fields { display: none; }
+        .video-fields.visible { display: block; }
+        .template-field { display: none; }
+        .template-field.visible { display: flex; }
         .copy-options {
             background: #f8f9fa;
             border: 1px solid #e0e3e6;
@@ -333,35 +261,11 @@
             padding: 12px 16px;
             margin-bottom: 16px;
         }
-        .copy-options h4 {
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #555;
-        }
-        .copy-options .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-        .copy-options .option {
-            font-size: 12px;
-            color: #555;
-            padding: 4px 8px;
-            background: #fff;
-            border-radius: 4px;
-        }
-        .copy-options .option-warning {
-            background: #FFF8E1;
-            border-left: 3px solid #F5A623;
-        }
-        .copy-options .warning-tag {
-            font-size: 10px;
-            color: #b45309;
-            font-weight: 500;
-            display: block;
-            margin-top: 2px;
-        }
+        .copy-options h4 { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #555; }
+        .copy-options .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .copy-options .option { font-size: 12px; color: #555; padding: 4px 8px; background: #fff; border-radius: 4px; }
+        .copy-options .option-warning { background: #FFF8E1; border-left: 3px solid #F5A623; }
+        .copy-options .warning-tag { font-size: 10px; color: #b45309; font-weight: 500; display: block; margin-top: 2px; }
         .hidden { display: none; }
         .confirmation-box {
             background: #FFF8E1;
@@ -386,28 +290,55 @@
             accent-color: #067D62;
             cursor: pointer;
         }
-        .checklist-items {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .checklist-items { display: flex; flex-direction: column; gap: 8px; }
+        .checklist-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; cursor: pointer; }
+        .checklist-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #067D62; cursor: pointer; }
+
+        /* ---- Validation panel styles ---- */
+        .validation-panel {
+            border-radius: 8px;
+            padding: 0;
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #e0e3e6;
         }
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #444;
-            cursor: pointer;
+        .validation-block {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eef0f2;
         }
-        .checklist-item input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            accent-color: #067D62;
-            cursor: pointer;
+        .validation-block:last-child { border-bottom: none; }
+        .validation-block.pass { background: #eafaf1; }
+        .validation-block.fail { background: #fdf0ef; }
+        .validation-block.warn { background: #FFF8E1; }
+        .validation-block .v-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+        .validation-block.pass .v-title { color: #1e7d34; }
+        .validation-block.fail .v-title { color: #b3261e; }
+        .validation-block.warn .v-title { color: #8a5a00; }
+        .validation-block .v-body { font-size: 12.5px; color: #444; line-height: 1.45; }
+        .validation-block .v-body b { color: #2c3e50; }
+        .suggest { margin-top: 9px; padding-top: 9px; border-top: 1px dashed rgba(0,0,0,.12); }
+        .suggest-label { font-size: 12px; font-weight: 700; color: #2c3e50; margin-bottom: 6px; }
+        .chip {
+            display: flex; align-items: center; justify-content: space-between; gap: 8px;
+            background: #fff; border: 1px solid #e0e3e6; border-radius: 7px;
+            padding: 6px 8px 6px 11px; margin-bottom: 6px; font-size: 13px;
         }
-        .version2-toggle {
-            display: none;
+        .chip span { font-weight: 600; }
+        .copybtn {
+            border: 1px solid #e0e3e6; background: #f4f5f7; border-radius: 6px;
+            cursor: pointer; font-size: 13px; padding: 3px 8px; line-height: 1;
         }
+        .copybtn:hover { background: #e9edf2; }
+        .override-box {
+            margin-top: 10px; padding: 10px 12px; background: #fff;
+            border: 1px dashed #e0a300; border-radius: 6px;
+        }
+        .override-box .checkbox-label { font-size: 12.5px; }
+        .override-box textarea {
+            width: 100%; margin-top: 8px; padding: 8px 10px; border: 1px solid #d1d5db;
+            border-radius: 6px; font-size: 12.5px; font-family: inherit; min-height: 44px; resize: vertical;
+        }
+        .override-box textarea.needed { border-color: #e74c3c; background: #fdf0ef; }
         @media (max-width: 768px) {
             .form-row { grid-template-columns: 1fr; }
             .form-row.three { grid-template-columns: 1fr; }
@@ -595,8 +526,30 @@
 
             <!-- Copy -->
             <div class="field-warning" style="margin-bottom:12px;">
-                ⚠️ All placements must use action-oriented messaging that directs customers to a clearly identified destination. See <a href="https://design.amazon.com/styleguide/724BA9F0B089/homepage-design-guidelines/general-guidelines/copy-and-messaging-basics/#gIvjt90xRGj0O7" target="_blank">Copy &amp; Messaging Basics</a>.
+                ⚠️ All placements must use action-oriented messaging that directs customers to a clearly identified destination. Both headline and sub-headline must use <b>sentence case</b>. See <a href="https://design.amazon.com/styleguide/724BA9F0B089/homepage-design-guidelines/general-guidelines/copy-and-messaging-basics/#gIvjt90xRGj0O7" target="_blank">Copy &amp; Messaging Basics</a>.
             </div>
+
+            <!-- Category (drives actionability suggestions) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category <span class="char-limit">(tailors actionability suggestions)</span></label>
+                    <select id="category" onchange="updateCharCounters()">
+                        <option value="general">General / other</option>
+                        <option value="tv">Entertainment – TV show</option>
+                        <option value="movie">Entertainment – Movie</option>
+                        <option value="music">Entertainment – Music</option>
+                        <option value="books">Books</option>
+                        <option value="electronics">Consumer electronics</option>
+                        <option value="cpg">Consumer packaged goods</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="fashion">Fashion / apparel</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="home">Home</option>
+                        <option value="gaming">Gaming</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-row">
                 <div class="form-group">
                     <label>Headline <span class="required">*</span> <span class="char-limit">(16 chars/line max)</span></label>
@@ -610,11 +563,6 @@
                     <div class="char-counter" id="subheadlineCounter">0 chars</div>
                     <div class="line-warning" id="subheadlineWarning" style="display:none;"></div>
                 </div>
-            </div>
-
-            <!-- CTA / action-driving copy flag -->
-            <div class="cta-flag" id="ctaFlag" style="display:none;">
-                🚫 This copy may not be action-driving. Consider adding a clear call-to-action (e.g. Shop, Discover, Explore, etc).
             </div>
 
             <div class="form-row">
@@ -652,11 +600,14 @@
                 </div>
             </div>
 
+            <!-- Copy validation panel (actionability + sentence case + prohibited CTAs) -->
+            <div class="validation-panel hidden" id="validationPanel"></div>
+
             <!-- Asset Confirmation -->
             <div class="confirmation-box">
                 <div class="asset-checklist" id="assetChecklist">
                     <h4 style="font-size:13px; font-weight:600; margin-bottom:10px; color:#34495e;">📎 Required Assets for <span id="checklistFlowLabel">Static — Templatized</span>:</h4>
-                    
+
                     <div id="checklist-templatized" class="checklist-items">
                         <label class="checklist-item"><input type="checkbox" class="asset-check"> Logo file(s) — high-res PNG/SVG/AI</label>
                         <label class="checklist-item"><input type="checkbox" class="asset-check"> ASIN product image(s) — on solid/transparent background</label>
@@ -724,7 +675,6 @@
         const isTemplatized = (flow === 'templatized' || flow === 'video-templatized');
         const isVideo = (flow === 'video' || flow === 'video-templatized');
 
-        // Toggle template fields
         const templateRow = document.getElementById('templateRow');
         const bgImageRow = document.getElementById('bgImageRow');
         const videoFields = document.getElementById('videoFields');
@@ -742,13 +692,11 @@
             bgSpecLabel.textContent = '(855×1368px PSD)';
         }
 
-        // ASIN is optional for Custom Static (non-endemic advertisers)
         const asinRequired = document.getElementById('asinRequired');
         if (asinRequired) {
             asinRequired.style.display = (flow === 'custom') ? 'none' : 'inline';
         }
 
-        // Toggle asset checklists
         const flowLabelsMap = {
             templatized: 'Static — Templatized',
             custom: 'Static — Custom',
@@ -761,11 +709,495 @@
         document.getElementById('checklist-video').style.display = flow === 'video' ? 'flex' : 'none';
         document.getElementById('checklist-video-templatized').style.display = flow === 'video-templatized' ? 'flex' : 'none';
 
-        // Reset all checkboxes when switching flows
         document.querySelectorAll('.asset-check').forEach(cb => cb.checked = false);
         document.getElementById('assetConfirmation').checked = false;
     }
 
+    /* =======================================================================
+       COPY VALIDATION ENGINE (actionability + sentence case)
+       Ported from the Window Display Copy Checker.
+    ======================================================================= */
+
+    const ACTION_VERBS = [
+        "shop","explore","discover","learn","watch","stream","save","get","try","join","order",
+        "book","upgrade","find","start","meet","build","create","play","listen","read","gift","celebrate",
+        "compra","descubre","explora","ahorra","aprende","mira","consigue","prueba","unete","únete","reserva",
+        "encuentra","empieza","juega","escucha","regala","celebra",
+        "scopri","acquista","risparmia","guarda","prova","unisciti","prenota","trova","inizia","gioca","ascolta","festeggia"
+    ];
+    const DESTINATION_CUES = [
+        "shop","grocery","guide","savings","prime","deals","collection","store","gift","gifts","selection",
+        "delivery","subscription","features","range","music","movies","books","holiday","event","sale",
+        "series","season","episode","film","movie","show","album","song","playlist","game",
+        "guia","guía","guida","ofertas","offerte","coleccion","colección","collezione","tienda","negozio","regalos","regali",
+        "serie","temporada","episodio","pelicula","película","álbum","canzone","stagione","gioco","juego"
+    ];
+    const SPEC_PATTERNS = [
+        /\bup to\b/i, /\bfino a\b/i, /\bhasta\b/i,
+        /\b\d+\s*(days?|giorni|dias|días|hours?|hrs?|years?|anni|años)\b/i,
+        /\bbattery\b/i, /\bautonomia\b/i, /\bbatería\b/i,
+        /\bmonitoring\b/i, /\bcertified\b/i, /\bcertificad/i, /\bcertificat/i,
+        /\bremoves?\b/i, /\brimuove\b/i, /\belimina\b/i,
+        /\bvitamin\b/i, /\bmg\b/i, /\bml\b/i, /\bpx\b/i
+    ];
+    const DISCOUNT_PATTERNS = [
+        /\bsave\b/i, /\bahorra\b/i, /\brisparmia\b/i,
+        /\bextra\b/i, /\bsconto\b/i, /\bdescuento\b/i,
+        /€|\$|£/, /%/, /\boff\b/i, /\bdeal\b/i, /\boferta\b/i, /\bofferta\b/i
+    ];
+    const DISCLAIMER_ONLY_PATTERNS = [
+        /requires? a? ?subscription/i, /si applicano condizioni/i, /condiciones/i,
+        /terms (and|&) conditions/i, /individual results/i, /in base all'uso/i, /in base all’uso/i
+    ];
+    // Prohibited generic CTAs and tap-through symbols (not tied to a destination).
+    const BANNED_CTAS = [
+        { rx: /\bshop now\b/i,   txt: "Shop now" },
+        { rx: /\blearn more\b/i, txt: "Learn more" },
+        { rx: /\bsee more\b/i,   txt: "See more" },
+        { rx: /\bbuy now\b/i,    txt: "Buy now" },
+        { rx: /\bclick here\b/i, txt: "Click here" },
+        { rx: /\btap here\b/i,   txt: "Tap here" },
+        { rx: /\bview more\b/i,  txt: "View more" },
+        { rx: /\bread more\b/i,  txt: "Read more" }
+    ];
+
+    const CATEGORIES = {
+        general: { noDestNeeded:false, verbs:["shop","explore","discover","get","find"],
+            tpl:s=>[`Shop the ${s}`,`Explore ${s}`,`Discover ${s}`],
+            fallback:["Shop grocery delivery","Explore the holiday gift guide","Learn about your Prime savings"] },
+        tv: { noDestNeeded:true, verbs:["watch","stream","binge","discover","catch"],
+            tpl:s=>[`Watch ${s}`,`Stream ${s} now`,`Binge ${s}`],
+            fallback:["Watch the new series","Stream the latest episodes","Discover the new season"] },
+        movie: { noDestNeeded:true, verbs:["watch","stream","see","discover"],
+            tpl:s=>[`Watch ${s}`,`Stream ${s} now`,`See ${s}`],
+            fallback:["Watch the new movie","Stream the film now","Discover new releases"] },
+        music: { noDestNeeded:true, verbs:["listen","stream","play","discover","hear"],
+            tpl:s=>[`Listen to ${s}`,`Stream ${s}`,`Play ${s}`],
+            fallback:["Listen to the new album","Stream the latest hits","Play the new playlist"] },
+        books: { noDestNeeded:true, verbs:["read","shop","discover","explore"],
+            tpl:s=>[`Read ${s}`,`Shop ${s}`,`Discover ${s}`],
+            fallback:["Read the new release","Shop bestselling books","Discover your next read"] },
+        electronics: { noDestNeeded:false, verbs:["shop","explore","discover","upgrade","get"],
+            tpl:s=>[`Shop the ${s}`,`Explore ${s} features`,`Upgrade to the ${s}`],
+            fallback:["Shop the latest tech","Explore new devices","Upgrade your setup"] },
+        cpg: { noDestNeeded:false, verbs:["shop","discover","try","get","stock up on"],
+            tpl:s=>[`Shop ${s}`,`Try ${s}`,`Discover ${s}`],
+            fallback:["Shop everyday essentials","Try the new range","Stock up and save"] },
+        grocery: { noDestNeeded:false, verbs:["shop","order","get","save on"],
+            tpl:s=>[`Shop ${s}`,`Order ${s}`,`Save on ${s}`],
+            fallback:["Shop grocery delivery","Order fresh groceries","Save on weekly essentials"] },
+        fashion: { noDestNeeded:false, verbs:["shop","explore","discover","refresh"],
+            tpl:s=>[`Shop the ${s} collection`,`Explore ${s}`,`Refresh your ${s}`],
+            fallback:["Shop the new collection","Explore the range","Refresh your wardrobe"] },
+        beauty: { noDestNeeded:false, verbs:["shop","discover","try","explore"],
+            tpl:s=>[`Shop ${s}`,`Discover ${s}`,`Try ${s}`],
+            fallback:["Shop new arrivals","Discover the collection","Try the bestsellers"] },
+        home: { noDestNeeded:false, verbs:["shop","explore","refresh","discover"],
+            tpl:s=>[`Shop ${s}`,`Refresh your ${s}`,`Discover ${s}`],
+            fallback:["Shop home essentials","Refresh your space","Discover new arrivals"] },
+        gaming: { noDestNeeded:true, verbs:["play","shop","explore","discover"],
+            tpl:s=>[`Play ${s}`,`Shop ${s}`,`Discover ${s}`],
+            fallback:["Play the new release","Shop gaming gear","Discover new titles"] }
+    };
+
+    // Sentence-case helpers
+    const FUNCTION_WORDS = new Set([
+        "a","an","the","and","or","but","for","nor","of","to","in","on","at","by","with","from",
+        "my","your","our","their","his","her","its","up","as","so","if","per","via","off","out",
+        "el","la","los","las","un","una","de","del","y","o","en","con","por","para","tu","tus","su","sus","mi","mis",
+        "il","lo","gli","le","di","della","e","al","dei","tuo","tua"
+    ]);
+    const COMMON_ACRONYMS = new Set([
+        "TV","HD","4K","8K","UHD","LED","OLED","QLED","USB","AI","VR","AR","PC","GB","TB","MP",
+        "SUV","EV","LG","HP","GE","3D","XL","XXL","SPF","UV","DVD","CD","US","UK","EU","NBA","NFL"
+    ]);
+    const LINKING = /\b(is|are|was|were|be|been|coming|comes|here|now|today|tonight)\b/i;
+
+    function toLines(v){ return (v||"").split(/\r?\n/).map(s=>s.trim()).filter(s=>s.length>0); }
+    function hasAny(text, arr){ const t=" "+text.toLowerCase()+" "; return arr.some(w=>t.includes(" "+w+" ")||t.includes(" "+w)); }
+    function matchesAny(text, patterns){ return patterns.some(rx=>rx.test(text)); }
+
+    function extractSubject(hLines, sLines){
+        const looksLikeName = (s)=>{
+            // Strong "name" signals: an all-caps brand run (2+ letters) or a token with a digit
+            // (model numbers like "D3", "GT 7"). A lone capitalized English word ("Hands")
+            // is NOT enough — that's just a capitalized sentence start.
+            const hasModelToken = /\b[A-Z]{2,}\b/.test(s) || /\b\w*\d\w*\b/.test(s);
+            const words = s.split(/\s+/).filter(w=>w.length>2);
+            const multiWordTitleCase = words.length>=2 && words.every(w=>/^[A-Z0-9]/.test(w));
+            return hasModelToken || multiWordTitleCase;
+        };
+        const candidate = (l)=>{
+            const s = (l||"").replace(/[*]+/g,"").trim().split(/,/)[0].trim();
+            if(!s) return "";
+            if(s.split(/\s+/).length > 5) return "";
+            if(LINKING.test(s)) return "";
+            if(matchesAny(s, SPEC_PATTERNS)) return "";
+            if(matchesAny(s, DISCOUNT_PATTERNS)) return "";
+            if(!looksLikeName(s)) return "";
+            return s;
+        };
+        for(const l of hLines){ const c = candidate(l); if(c) return c; }
+        for(const l of sLines){ const c = candidate(l); if(c) return c; }
+        return "";
+    }
+    function tidySubject(s){
+        if(!s) return s;
+        const letters = s.replace(/[^A-Za-z]/g,"");
+        const upperRatio = letters ? (letters.replace(/[^A-Z]/g,"").length / letters.length) : 0;
+        if(upperRatio > 0.7){ s = s.toLowerCase().replace(/\b([a-z])/g, m=>m.toUpperCase()); }
+        s = s.replace(/\b(gt|tv|hd|pro|plus|max|ultra|lite)\b/gi, m=>{
+            const map={gt:"GT",tv:"TV",hd:"HD",pro:"Pro",plus:"Plus",max:"Max",ultra:"Ultra",lite:"Lite"};
+            return map[m.toLowerCase()] || m;
+        });
+        return s;
+    }
+    function firstDiscountToken(text){
+        const m = text.match(/(€\s?\d+|\$\s?\d+|£\s?\d+|\d+\s?%|\d+\s?€)/);
+        return m ? m[0].replace(/\s+/g,"") : null;
+    }
+    function buildSuggestions(hLines, sLines, category){
+        const cat = CATEGORIES[category] || CATEGORIES.general;
+        const subj = tidySubject(extractSubject(hLines, sLines));
+        const all = [...hLines, ...sLines].join(" ");
+        const discount = firstDiscountToken(all);
+        const list = [];
+        if(subj && subj.length <= 24){
+            cat.tpl(subj).forEach(x=>list.push(x));
+            if(discount) list.unshift(`Shop the ${subj} and save ${discount}`);
+        }
+        for(const f of cat.fallback){ if(list.length>=4) break; if(!list.includes(f)) list.push(f); }
+        return list.slice(0,4);
+    }
+
+    // Returns { status:'pass'|'fail', title, body, suggestions:[] }
+    function evaluateActionability(hLines, sLines, category){
+        const headline = hLines.join(" ").trim();
+        const subhead  = sLines.join(" ").trim();
+        const all = (headline+" "+subhead).trim();
+        if(all.length===0) return { status:'empty' };
+
+        const cat = CATEGORIES[category] || CATEGORIES.general;
+        const verbSet = [...new Set([...cat.verbs, ...ACTION_VERBS])];
+        const hasVerb = hasAny(all, verbSet);
+        const hasDestination = hasAny(all, DESTINATION_CUES);
+        const isSpec = matchesAny(all, SPEC_PATTERNS);
+        const isDiscount = matchesAny(all, DISCOUNT_PATTERNS);
+        const isDisclaimerOnly = matchesAny(all, DISCLAIMER_ONLY_PATTERNS) && !hasVerb;
+        const productName = extractSubject(hLines, sLines).length>0 && !hasVerb;
+        const hasSubject = extractSubject(hLines, sLines).length>0;
+
+        const actionableWithDest = hasVerb && hasDestination;
+        const actionableMedia = hasVerb && cat.noDestNeeded && (hasSubject || hasDestination);
+        if(actionableWithDest || actionableMedia){
+            return { status:'pass', title:'Copy is action-oriented',
+                body: cat.noDestNeeded
+                    ? 'Detected an action verb (e.g. Watch/Stream/Listen) with a title/subject — appropriate for this category. Confirm it highlights one clear benefit.'
+                    : 'Detected an action verb pointing to a destination. Confirm it also highlights one clear customer benefit.' };
+        }
+
+        const suggestions = buildSuggestions(hLines, sLines, category);
+        let title, why;
+        if(isDisclaimerOnly){
+            title = 'Not actionable — reads as a disclaimer only';
+            why = 'The message only states a condition (e.g. “requires a subscription”). Lead with an action + destination and keep the requirement in the disclaimer field.';
+        } else if(productName){
+            title = 'Not actionable — reads as a product / brand name';
+            why = 'A standalone product name doesn\'t tell the customer what to do or where a tap leads. Add an action + destination.';
+        } else if(isDiscount && !(hasVerb && hasDestination)){
+            title = 'Not actionable — leads with a discount, no action';
+            why = 'A price/discount alone isn\'t a clear action. Pair it with an action + destination.';
+        } else if(isSpec && !hasVerb){
+            title = 'Not actionable — describes a spec/feature only';
+            why = 'Specs alone (battery life, certifications, “removes X”) don\'t direct the customer. Frame around an action + benefit.';
+        } else if(hasVerb && !hasDestination){
+            title = 'Not actionable — no clear destination';
+            why = 'Copy has an action word but doesn\'t identify where the tap leads. Make the destination explicit.';
+        } else {
+            title = 'Not actionable — no action-oriented language';
+            why = 'Every card must tell the customer what to do or where they\'re going, and feature one clear benefit.';
+        }
+        const noSubhead = (sLines.length === 0);
+        return { status:'fail', title, body: why + ' Copy must be action-oriented and point to a clearly identified destination.', suggestions, noSubhead };
+    }
+
+    // Sentence-case: returns { status:'pass'|'fail', issues:[{raw, msg}] }
+    function stripFootnotes(w){ return w.replace(/[*.,!?;:()"'’“”]+$/,"").replace(/^["'“”(]+/,""); }
+    function isAllCaps(w){ const letters=w.replace(/[^A-Za-zÀ-ÿ]/g,""); return letters.length>0 && letters===letters.toUpperCase(); }
+    function isCapitalized(w){ return /^[A-ZÀ-Þ]/.test(w); }
+    function toSentenceCase(s){
+        const words = s.split(/(\s+)/); let seenWord=false;
+        return words.map(tok=>{
+            if(/^\s+$/.test(tok) || tok==="") return tok;
+            const clean = tok.replace(/[^A-Za-z]/g,"");
+            if(COMMON_ACRONYMS.has(clean.toUpperCase())) return tok;
+            if(!seenWord){ seenWord=true; return tok.charAt(0).toUpperCase()+tok.slice(1).toLowerCase(); }
+            return tok.toLowerCase();
+        }).join("");
+    }
+    function checkLineSentenceCase(line, entertainmentCat){
+        const raw = (line||"").trim();
+        if(!raw) return null;
+        const tokens = raw.split(/\s+/).map(stripFootnotes).filter(w=>/[A-Za-zÀ-ÿ]/.test(w));
+        if(tokens.length===0) return null;
+        const isAcronym = (w)=> COMMON_ACRONYMS.has(w.replace(/[^A-Za-z]/g,"").toUpperCase());
+
+        const capsWords = tokens.filter(isAllCaps);
+        let maxRun=0, run=0;
+        tokens.forEach(w=>{ if(isAllCaps(w) && !isAcronym(w)){ run++; maxRun=Math.max(maxRun,run);} else run=0; });
+        const shouting = capsWords.filter(w=>{ const clean=w.replace(/[^A-Za-z]/g,""); if(isAcronym(w)) return false; return clean.length>3; });
+
+        if(shouting.length>0 || maxRun>=2){
+            const which = (shouting.length?shouting:capsWords).slice(0,4).join(", ");
+            const titleHint = entertainmentCat ? ' It\'s also okay if these words are the title of a TV show, movie, album, or book.' : '';
+            return { raw, msg:`Flagged because <b>${which}</b> ${shouting.length>1||maxRun>=2?'are':'is'} in all caps — copy should be sentence case. <b>If this is an acronym or intentional brand mark (e.g. LG, OLED, TV), you can disregard.</b>${titleHint} Otherwise use e.g. “${toSentenceCase(raw)}”.` };
+        }
+
+        const rest = tokens.slice(1);
+        const capFunctionWords = rest.filter(w=>{
+            const lc = w.toLowerCase().replace(/[^a-zà-ÿ]/g,"");
+            return FUNCTION_WORDS.has(lc) && isCapitalized(w);
+        });
+        if(capFunctionWords.length>0){
+            const titleNote = entertainmentCat
+                ? ' <b>Note:</b> you selected an entertainment category — if these words are the title of a TV show, movie, album, or book, this is okay and you can disregard.'
+                : ' <b>Note:</b> it\'s okay if the capitalized words are the title of a TV show, movie, or other proper name.';
+            return { raw, msg:`Words like <b>${capFunctionWords.slice(0,4).join(", ")}</b> are capitalized mid-sentence. Headlines and subheads must be <b>sentence case</b> (only the first word capitalized, aside from names/brands) — e.g. “${toSentenceCase(raw)}”.${titleNote}` };
+        }
+        return null;
+    }
+    function evaluateSentenceCase(hLines, sLines, category){
+        const entertainmentCat = ["tv","movie","music","books","gaming"].includes(category);
+        const issues = [];
+        [...hLines, ...sLines].forEach(ln=>{ const r = checkLineSentenceCase(ln, entertainmentCat); if(r) issues.push(r); });
+        if(hLines.length===0 && sLines.length===0) return { status:'empty' };
+        return issues.length ? { status:'fail', issues } : { status:'pass' };
+    }
+
+    // Prohibited CTA check: returns { status:'pass'|'fail'|'empty', hits:[...] }
+    function evaluateBannedCTA(hLines, sLines){
+        const all = [...hLines, ...sLines].join(' ').trim();
+        if(all.length===0) return { status:'empty' };
+        const hits = [];
+        BANNED_CTAS.forEach(b=>{ if(b.rx.test(all)) hits.push(b.txt); });
+        if(/[>›»→]/.test(all)) hits.push('tap-through symbol (e.g. “>”)');
+        return hits.length ? { status:'fail', hits } : { status:'pass' };
+    }
+
+    // Cache latest results for export
+    let lastActionability = { status:'empty' };
+    let lastSentenceCase = { status:'empty' };
+    let lastBannedCTA = { status:'empty' };
+
+    function renderValidation(){
+        const category = document.getElementById('category').value;
+        const hLines = toLines(document.getElementById('headline').value);
+        const sLines = toLines(document.getElementById('subheadline').value);
+        const panel = document.getElementById('validationPanel');
+
+        const act = evaluateActionability(hLines, sLines, category);
+        const sc  = evaluateSentenceCase(hLines, sLines, category);
+        const cta = evaluateBannedCTA(hLines, sLines);
+        lastActionability = act;
+        lastSentenceCase = sc;
+        lastBannedCTA = cta;
+
+        if(act.status==='empty' && sc.status==='empty' && cta.status==='empty'){
+            panel.classList.add('hidden');
+            panel.innerHTML='';
+            return;
+        }
+        panel.classList.remove('hidden');
+        let html = '';
+
+        // ---- Actionability block ----
+        if(act.status==='pass'){
+            html += `<div class="validation-block pass"><div class="v-title">✅ Actionability — passed</div><div class="v-body">${act.body}</div></div>`;
+        } else if(act.status==='fail'){
+            let sugg = '';
+            if(act.suggestions && act.suggestions.length){
+                sugg = `<div class="suggest"><div class="suggest-label">Suggested rewrites — starting points, adapt as needed:</div>` +
+                    act.suggestions.map(s=>{ const esc=s.replace(/"/g,'&quot;'); return `<div class="chip"><span>${s}</span><button type="button" class="copybtn" data-copy="${esc}">📋</button></div>`; }).join('') +
+                    `</div>`;
+            }
+            const noteHtml = act.noSubhead
+                ? `<div style="margin-top:8px;"><b><i>Actionability will be re-evaluated if/when you add a sub-headline — an actionable sub-headline can satisfy this requirement.</i></b></div>`
+                : '';
+            html += `<div class="validation-block fail">
+                <div class="v-title">🚫 Actionability — blocked</div>
+                <div class="v-body"><b>${act.title}.</b> ${act.body}</div>
+                ${noteHtml}
+                ${sugg}
+                <div class="override-box">
+                    <label class="checkbox-label"><input type="checkbox" id="ovrActionChk" onchange="refreshOverrideState()"><span>Override — I confirm this copy <b>is</b> actionable.</span></label>
+                    <textarea id="ovrActionReason" placeholder="Required: explain why this copy is actionable (recorded in the export)" oninput="refreshOverrideState()"></textarea>
+                </div>
+            </div>`;
+        }
+
+        // ---- Sentence case block ----
+        if(sc.status==='pass'){
+            html += `<div class="validation-block pass"><div class="v-title">✅ Sentence case — passed</div><div class="v-body">Headline and sub-headline are in sentence case.</div></div>`;
+        } else if(sc.status==='fail'){
+            const items = sc.issues.map(i=>`<div style="margin-bottom:6px;">“<b>${i.raw}</b>” — ${i.msg}</div>`).join('');
+            html += `<div class="validation-block fail">
+                <div class="v-title">🚫 Sentence case — blocked</div>
+                <div class="v-body">${items}</div>
+                <div class="override-box">
+                    <label class="checkbox-label"><input type="checkbox" id="ovrCaseChk" onchange="refreshOverrideState()"><span>Override — this casing is intentional (brand/acronym/title).</span></label>
+                    <textarea id="ovrCaseReason" placeholder="Required: explain why this casing is correct (recorded in the export)" oninput="refreshOverrideState()"></textarea>
+                </div>
+            </div>`;
+        }
+
+        // ---- Prohibited CTA block ----
+        if(cta.status==='pass'){
+            html += `<div class="validation-block pass"><div class="v-title">✅ Prohibited CTAs — passed</div><div class="v-body">No generic CTAs (e.g. “Shop now”) or tap-through symbols detected.</div></div>`;
+        } else if(cta.status==='fail'){
+            html += `<div class="validation-block fail">
+                <div class="v-title">🚫 Prohibited CTA — blocked</div>
+                <div class="v-body">Detected prohibited CTA/symbol: <b>${cta.hits.join(', ')}</b>. Use a CTA that names the destination instead — e.g. <b>Shop grocery delivery</b>, <b>Explore the holiday gift guide</b>, <b>Learn about your Prime savings</b>. The entire card is tappable, so avoid “now/more” CTAs and arrows like “&gt;”.</div>
+                <div class="override-box">
+                    <label class="checkbox-label"><input type="checkbox" id="ovrCtaChk" onchange="refreshOverrideState()"><span>Override — this CTA is approved for this use case.</span></label>
+                    <textarea id="ovrCtaReason" placeholder="Required: explain why this CTA is allowed (recorded in the export)" oninput="refreshOverrideState()"></textarea>
+                </div>
+            </div>`;
+        }
+
+        panel.innerHTML = html;
+
+        // wire copy buttons
+        panel.querySelectorAll('.copybtn').forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+                const text = btn.getAttribute('data-copy');
+                if(navigator.clipboard) navigator.clipboard.writeText(text);
+                const old = btn.textContent; btn.textContent='✓'; setTimeout(()=>btn.textContent=old,1200);
+            });
+        });
+        refreshOverrideState();
+    }
+
+    // Enable/disable export based on blockers + overrides
+    function refreshOverrideState(){
+        const exportBtn = document.querySelector('.btn-success');
+        if(!exportBtn) return;
+        const status = getBlockingStatus();
+        exportBtn.disabled = status.blocked;
+        exportBtn.title = status.blocked ? status.reason : '';
+        // Mark missing reason fields
+        const aReason = document.getElementById('ovrActionReason');
+        const aChk = document.getElementById('ovrActionChk');
+        if(aReason && aChk){ aReason.classList.toggle('needed', aChk.checked && !aReason.value.trim()); }
+        const cReason = document.getElementById('ovrCaseReason');
+        const cChk = document.getElementById('ovrCaseChk');
+        if(cReason && cChk){ cReason.classList.toggle('needed', cChk.checked && !cReason.value.trim()); }
+        const ctaReason = document.getElementById('ovrCtaReason');
+        const ctaChk = document.getElementById('ovrCtaChk');
+        if(ctaReason && ctaChk){ ctaReason.classList.toggle('needed', ctaChk.checked && !ctaReason.value.trim()); }
+    }
+
+    // Determine if export is currently blocked and why
+    function getBlockingStatus(){
+        let blocked = false; let reason = '';
+        if(lastActionability.status==='fail'){
+            const chk = document.getElementById('ovrActionChk');
+            const reasonEl = document.getElementById('ovrActionReason');
+            const overridden = chk && chk.checked;
+            const hasReason = reasonEl && reasonEl.value.trim().length>0;
+            if(!overridden){ blocked=true; reason='Copy is not actionable. Fix the copy or check the actionability override.'; }
+            else if(!hasReason){ blocked=true; reason='Provide a reason for the actionability override.'; }
+        }
+        if(lastSentenceCase.status==='fail'){
+            const chk = document.getElementById('ovrCaseChk');
+            const reasonEl = document.getElementById('ovrCaseReason');
+            const overridden = chk && chk.checked;
+            const hasReason = reasonEl && reasonEl.value.trim().length>0;
+            if(!overridden){ blocked=true; reason = reason || 'Copy is not sentence case. Fix the copy or check the sentence-case override.'; }
+            else if(!hasReason){ blocked=true; reason = reason || 'Provide a reason for the sentence-case override.'; }
+        }
+        if(lastBannedCTA.status==='fail'){
+            const chk = document.getElementById('ovrCtaChk');
+            const reasonEl = document.getElementById('ovrCtaReason');
+            const overridden = chk && chk.checked;
+            const hasReason = reasonEl && reasonEl.value.trim().length>0;
+            if(!overridden){ blocked=true; reason = reason || 'Copy uses a prohibited CTA. Fix the copy or check the CTA override.'; }
+            else if(!hasReason){ blocked=true; reason = reason || 'Provide a reason for the prohibited-CTA override.'; }
+        }
+        return { blocked, reason };
+    }
+
+    /* =======================================================================
+       CHARACTER COUNTERS (existing behavior) + validation refresh
+    ======================================================================= */
+    function checkLineLimit(fieldId, counterId, warningId, perLineLimit, maxLines) {
+        const field = document.getElementById(fieldId);
+        const counter = document.getElementById(counterId);
+        const warning = document.getElementById(warningId);
+        const lines = field.value.split('\n');
+
+        const overLines = [];
+        lines.forEach((line, i) => { if (line.length > perLineLimit) overLines.push(i + 1); });
+        const tooManyLines = maxLines && lines.length > maxLines;
+
+        counter.textContent = `${field.value.replace(/\n/g, '').length} chars`;
+
+        if (overLines.length > 0 || tooManyLines) {
+            field.classList.add('over-limit');
+            counter.classList.add('over');
+            let msg = '';
+            if (overLines.length > 0) {
+                msg = `⚠️ Line${overLines.length > 1 ? 's' : ''} ${overLines.join(', ')} exceed${overLines.length > 1 ? '' : 's'} the ${perLineLimit}-character limit.`;
+            }
+            if (tooManyLines) { msg += (msg ? ' ' : '') + `⚠️ Maximum ${maxLines} lines allowed.`; }
+            warning.textContent = msg;
+            warning.style.display = 'block';
+        } else {
+            field.classList.remove('over-limit');
+            counter.classList.remove('over');
+            warning.style.display = 'none';
+        }
+    }
+
+    function updateCharCounters() {
+        checkLineLimit('headline', 'headlineCounter', 'headlineWarning', 16, 4);
+        checkLineLimit('subheadline', 'subheadlineCounter', 'subheadlineWarning', 23, 2);
+
+        const disclaimer = document.getElementById('disclaimer');
+        const disclaimerCounter = document.getElementById('disclaimerCounter');
+        const disclaimerWarning = document.getElementById('disclaimerWarning');
+        const market = document.getElementById('market').value;
+        const dLimit = market === 'US' ? 21 : 42;
+        document.getElementById('disclaimerLimitLabel').textContent = `(${dLimit} chars max — single line)`;
+        disclaimerCounter.textContent = `${disclaimer.value.length} / ${dLimit}`;
+        if (disclaimer.value.length > dLimit) {
+            disclaimer.classList.add('over-limit');
+            disclaimerCounter.classList.add('over');
+            disclaimerWarning.textContent = `⚠️ Disclaimer exceeds the ${dLimit}-character limit for this market.`;
+            disclaimerWarning.style.display = 'block';
+        } else {
+            disclaimer.classList.remove('over-limit');
+            disclaimerCounter.classList.remove('over');
+            disclaimerWarning.style.display = 'none';
+        }
+
+        renderValidation();
+    }
+
+    function clearForm() {
+        const fields = ['advertiser', 'campaignName', 'flightDates', 'logo1', 'logo2',
+                        'templateStyle', 'copyLayout', 'bgImage', 'videoAsset', 'asin',
+                        'headline', 'subheadline', 'disclaimer', 'landingUrl', 'notes',
+                        'videoTemplateStyle', 'videoProductImages', 'aptLink', 'comments'];
+        fields.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+        document.querySelectorAll('.asset-check').forEach(cb => cb.checked = false);
+        document.getElementById('assetConfirmation').checked = false;
+        document.getElementById('category').value = 'general';
+        updateCharCounters();
+    }
+
+    /* =======================================================================
+       EXPORT (with actionability + sentence-case status)
+    ======================================================================= */
     function exportExcel() {
         const advertiser = document.getElementById('advertiser').value.trim();
         const campaignName = document.getElementById('campaignName').value.trim();
@@ -777,22 +1209,58 @@
             alert('Please fill in all required fields (Advertiser, Campaign, Headline, Landing URL).');
             return;
         }
-
-        // ASIN required for all flows except Custom Static (non-endemic advertisers)
         if (currentFlow !== 'custom' && !asin) {
             alert('Please fill in the ASIN field.');
             return;
         }
 
-        // Hard flag: warn strongly if copy is not action-driving
-        if (document.getElementById('ctaFlag').style.display === 'block') {
-            const proceed = confirm('⚠️ ACTION-DRIVING COPY REQUIRED\n\nThe headline/sub-headline does not appear to contain a clear call-to-action (e.g. Shop, Discover, Explore).\n\nAll placements must use action-oriented messaging. Are you sure you want to export anyway?');
-            if (!proceed) return;
+        // Hard blockers: actionability + sentence case (each override-able w/ reason)
+        const status = getBlockingStatus();
+        if (status.blocked) {
+            alert('🚫 Export blocked\n\n' + status.reason);
+            return;
         }
 
         if (!document.getElementById('assetConfirmation').checked) {
             alert('Please confirm that all required assets are attached in the creative request assignment.');
             return;
+        }
+
+        // Resolve validation status + override details for the export
+        const now = new Date();
+        const nowStr = now.toLocaleString();
+
+        let actionStatus, actionReason = '—', actionTs = '—';
+        if (lastActionability.status === 'pass') {
+            actionStatus = 'Passed';
+        } else if (lastActionability.status === 'fail') {
+            actionStatus = 'Overridden by CCM';
+            actionReason = document.getElementById('ovrActionReason').value.trim();
+            actionTs = nowStr;
+        } else {
+            actionStatus = 'Not evaluated';
+        }
+
+        let caseStatus, caseReason = '—', caseTs = '—';
+        if (lastSentenceCase.status === 'pass') {
+            caseStatus = 'Passed';
+        } else if (lastSentenceCase.status === 'fail') {
+            caseStatus = 'Overridden by CCM';
+            caseReason = document.getElementById('ovrCaseReason').value.trim();
+            caseTs = nowStr;
+        } else {
+            caseStatus = 'Not evaluated';
+        }
+
+        let ctaStatus, ctaReason = '—', ctaTs = '—';
+        if (lastBannedCTA.status === 'pass') {
+            ctaStatus = 'Passed';
+        } else if (lastBannedCTA.status === 'fail') {
+            ctaStatus = 'Overridden by CCM';
+            ctaReason = document.getElementById('ovrCtaReason').value.trim();
+            ctaTs = nowStr;
+        } else {
+            ctaStatus = 'Not evaluated';
         }
 
         const flowLabels = {
@@ -814,17 +1282,14 @@
         rows.push({ type: 'field', label: 'Campaign Name', value: campaignName });
         rows.push({ type: 'field', label: 'Flight Dates', value: val('flightDates') || '—' });
         rows.push({ type: 'field', label: 'Creative Flow', value: flowLabels[flow] });
+        rows.push({ type: 'field', label: 'Category', value: document.getElementById('category').options[document.getElementById('category').selectedIndex].text });
         rows.push({ type: 'field', label: 'Market', value: (document.getElementById('market').value === 'US' ? 'US' : 'CA / EU5 / JP / AU / MX') });
 
         rows.push({ type: 'section', text: 'Creative Specs' });
         rows.push({ type: 'field', label: 'Logo 1', value: val('logo1') });
         rows.push({ type: 'field', label: 'Logo 2 (co-brand)', value: val('logo2') || '—' });
-        if (flow === 'templatized') {
-            rows.push({ type: 'field', label: 'Template Style', value: val('templateStyle') });
-        }
-        if (flow === 'custom' || flow === 'video') {
-            rows.push({ type: 'field', label: 'Background Image', value: val('bgImage') || '—' });
-        }
+        if (flow === 'templatized') { rows.push({ type: 'field', label: 'Template Style', value: val('templateStyle') }); }
+        if (flow === 'custom' || flow === 'video') { rows.push({ type: 'field', label: 'Background Image', value: val('bgImage') || '—' }); }
         if (flow === 'video') {
             rows.push({ type: 'field', label: 'Video Asset', value: val('videoAsset') });
             rows.push({ type: 'field', label: 'Video Condition', value: val('videoCondition') });
@@ -842,6 +1307,17 @@
         rows.push({ type: 'field', label: 'Sub-headline', value: val('subheadline') || '—' });
         rows.push({ type: 'field', label: 'Disclaimer', value: val('disclaimer') || '—' });
 
+        rows.push({ type: 'section', text: 'Copy Validation' });
+        rows.push({ type: 'field', label: 'Actionability Check', value: actionStatus });
+        rows.push({ type: 'field', label: 'Actionability Override Reason', value: actionReason || '—' });
+        rows.push({ type: 'field', label: 'Actionability Override Timestamp', value: actionTs });
+        rows.push({ type: 'field', label: 'Sentence Case Check', value: caseStatus });
+        rows.push({ type: 'field', label: 'Sentence Case Override Reason', value: caseReason || '—' });
+        rows.push({ type: 'field', label: 'Sentence Case Override Timestamp', value: caseTs });
+        rows.push({ type: 'field', label: 'Prohibited CTA Check', value: ctaStatus });
+        rows.push({ type: 'field', label: 'Prohibited CTA Override Reason', value: ctaReason || '—' });
+        rows.push({ type: 'field', label: 'Prohibited CTA Override Timestamp', value: ctaTs });
+
         rows.push({ type: 'section', text: 'Approvals & Notes' });
         rows.push({ type: 'field', label: 'APT Approval Link', value: val('aptLink') || '—' });
         rows.push({ type: 'field', label: 'Notes', value: val('notes') || '—' });
@@ -858,11 +1334,9 @@
                 left: { style: 'thin', color: { rgb: 'D9DCE0' } },
                 right: { style: 'thin', color: { rgb: 'D9DCE0' } }
             };
-
             const aoa = [];
             const merges = [];
             const styles = {};
-
             rows.forEach((r) => {
                 const ri = aoa.length;
                 if (r.type === 'title') {
@@ -888,25 +1362,19 @@
                     styles[ri + ',1'] = { font: { sz: 10, color: { rgb: '2C3E50' } }, alignment: { vertical: 'top', wrapText: true }, border: border };
                 }
             });
-
             const ws = XLSX.utils.aoa_to_sheet(aoa);
-            ws['!cols'] = [{ wch: 28 }, { wch: 60 }];
+            ws['!cols'] = [{ wch: 30 }, { wch: 62 }];
             ws['!merges'] = merges;
             ws['!rows'] = [];
             ws['!rows'][0] = { hpt: 28 };
             ws['!rows'][1] = { hpt: 22 };
-
             aoa.forEach((_, ri) => {
                 [0, 1].forEach(ci => {
                     const addr = XLSX.utils.encode_cell({ r: ri, c: ci });
                     const key = ri + ',' + ci;
-                    if (styles[key]) {
-                        if (!ws[addr]) ws[addr] = { t: 's', v: '' };
-                        ws[addr].s = styles[key];
-                    }
+                    if (styles[key]) { if (!ws[addr]) ws[addr] = { t: 's', v: '' }; ws[addr].s = styles[key]; }
                 });
             });
-
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Creative Intake');
             XLSX.writeFile(wb, `WD_PrivAuction_Intake_${today}.xlsx`);
@@ -924,117 +1392,11 @@
         }
     }
 
-    function clearForm() {
-        const fields = ['advertiser', 'campaignName', 'flightDates', 'logo1', 'logo2',
-                        'templateStyle', 'copyLayout', 'bgImage', 'videoAsset', 'asin',
-                        'headline', 'subheadline', 'disclaimer', 'landingUrl', 'notes',
-                        'videoTemplateStyle', 'videoProductImages',
-                        'aptLink', 'comments'];
-        fields.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = '';
-        });
-        document.querySelectorAll('.asset-check').forEach(cb => cb.checked = false);
-        document.getElementById('assetConfirmation').checked = false;
-        updateCharCounters();
-    }
-
-    // Character counters with per-line limit checking
-    function checkLineLimit(fieldId, counterId, warningId, perLineLimit, maxLines) {
-        const field = document.getElementById(fieldId);
-        const counter = document.getElementById(counterId);
-        const warning = document.getElementById(warningId);
-        const lines = field.value.split('\n');
-
-        const overLines = [];
-        lines.forEach((line, i) => {
-            if (line.length > perLineLimit) overLines.push(i + 1);
-        });
-        const tooManyLines = maxLines && lines.length > maxLines;
-
-        counter.textContent = `${field.value.replace(/\n/g, '').length} chars`;
-
-        if (overLines.length > 0 || tooManyLines) {
-            field.classList.add('over-limit');
-            counter.classList.add('over');
-            let msg = '';
-            if (overLines.length > 0) {
-                msg = `⚠️ Line${overLines.length > 1 ? 's' : ''} ${overLines.join(', ')} exceed${overLines.length > 1 ? '' : 's'} the ${perLineLimit}-character limit.`;
-            }
-            if (tooManyLines) {
-                msg += (msg ? ' ' : '') + `⚠️ Maximum ${maxLines} lines allowed.`;
-            }
-            warning.textContent = msg;
-            warning.style.display = 'block';
-        } else {
-            field.classList.remove('over-limit');
-            counter.classList.remove('over');
-            warning.style.display = 'none';
-        }
-    }
-
-    // Action-oriented copy (CTA) detection
-    const CTA_VERBS = [
-        'shop','buy','discover','explore','save','get','order','learn','find','browse',
-        'grab','try','see','view','watch','stream','download','join','sign up','subscribe',
-        'upgrade','unlock','claim','redeem','start','build','create','add','choose','pick',
-        'compare','check out','enjoy','experience','gift','give','celebrate','stock up',
-        'refresh','upgrade','meet','tap','click','visit','preorder','pre-order','reserve','book'
-    ];
-
-    function checkCTA() {
-        const headline = document.getElementById('headline').value.toLowerCase();
-        const subheadline = document.getElementById('subheadline').value.toLowerCase();
-        const combined = (headline + ' ' + subheadline).trim();
-        const ctaFlag = document.getElementById('ctaFlag');
-        const hError = document.getElementById('headline');
-        const sError = document.getElementById('subheadline');
-
-        // Only evaluate once the user has entered some copy
-        if (combined.length === 0) {
-            ctaFlag.style.display = 'none';
-            return;
-        }
-
-        const hasCTA = CTA_VERBS.some(verb => {
-            const re = new RegExp('\\b' + verb.replace(/[-\\/\\^$*+?.()|[\]{}]/g, '\\$&') + '\\b', 'i');
-            return re.test(combined);
-        });
-
-        if (!hasCTA) {
-            ctaFlag.style.display = 'block';
-        } else {
-            ctaFlag.style.display = 'none';
-        }
-    }
-
-    function updateCharCounters() {
-        checkLineLimit('headline', 'headlineCounter', 'headlineWarning', 16, 4);
-        checkLineLimit('subheadline', 'subheadlineCounter', 'subheadlineWarning', 23, 2);
-        checkCTA();
-
-        const disclaimer = document.getElementById('disclaimer');
-        const disclaimerCounter = document.getElementById('disclaimerCounter');
-        const disclaimerWarning = document.getElementById('disclaimerWarning');
-        const market = document.getElementById('market').value;
-        const dLimit = market === 'US' ? 21 : 42;
-        document.getElementById('disclaimerLimitLabel').textContent = `(${dLimit} chars max — single line)`;
-        disclaimerCounter.textContent = `${disclaimer.value.length} / ${dLimit}`;
-        if (disclaimer.value.length > dLimit) {
-            disclaimer.classList.add('over-limit');
-            disclaimerCounter.classList.add('over');
-            disclaimerWarning.textContent = `⚠️ Disclaimer exceeds the ${dLimit}-character limit for this market.`;
-            disclaimerWarning.style.display = 'block';
-        } else {
-            disclaimer.classList.remove('over-limit');
-            disclaimerCounter.classList.remove('over');
-            disclaimerWarning.style.display = 'none';
-        }
-    }
-
     document.getElementById('headline').addEventListener('input', updateCharCounters);
     document.getElementById('subheadline').addEventListener('input', updateCharCounters);
     document.getElementById('disclaimer').addEventListener('input', updateCharCounters);
+    // initial state
+    updateCharCounters();
 </script>
 
 </body>
