@@ -1385,12 +1385,13 @@
         rows.push({ type: 'field', label: 'Disclaimer', value: val('disclaimer') || '—' });
 
         if (document.getElementById('secondLangToggle').checked) {
-            rows.push({ type: 'section', text: 'Second-Language Version' });
-            rows.push({ type: 'field', label: 'Second Language', value: val('secondLang') || '—' });
-            rows.push({ type: 'field', label: 'Copy Layout (2nd language)', value: val('copyLayout2') || '—' });
-            rows.push({ type: 'field', label: 'Headline (2nd language)', value: val('headline2') || '—' });
-            rows.push({ type: 'field', label: 'Sub-headline (2nd language)', value: val('subheadline2') || '—' });
-            rows.push({ type: 'field', label: 'Disclaimer (2nd language)', value: val('disclaimer2') || '—' });
+            const langLabel = val('secondLang') || 'Second Language';
+            rows.push({ type: 'section', text: 'Second-Language Version — ' + langLabel, highlight: true });
+            rows.push({ type: 'field', label: 'Second Language', value: val('secondLang') || '—', highlight: true });
+            rows.push({ type: 'field', label: 'Copy Layout (2nd language)', value: val('copyLayout2') || '—', highlight: true });
+            rows.push({ type: 'field', label: 'Headline (2nd language)', value: val('headline2') || '—', highlight: true });
+            rows.push({ type: 'field', label: 'Sub-headline (2nd language)', value: val('subheadline2') || '—', highlight: true });
+            rows.push({ type: 'field', label: 'Disclaimer (2nd language)', value: val('disclaimer2') || '—', highlight: true });
         }
 
         rows.push({ type: 'section', text: 'Copy Validation' });
@@ -1414,6 +1415,8 @@
         if (typeof XLSX !== 'undefined') {
             const NAVY = '232F3E', ORANGE = 'FF9900', BLUE = '146EB4';
             const LIGHT = 'F2F4F6', WHITE = 'FFFFFF';
+            // Second-language highlight palette (amber/yellow — stands out for designers)
+            const HL_SECTION = 'C7811F', HL_LABEL = 'FCEFCF', HL_VALUE = 'FFF8E6';
             const border = {
                 top: { style: 'thin', color: { rgb: 'D9DCE0' } },
                 bottom: { style: 'thin', color: { rgb: 'D9DCE0' } },
@@ -1440,12 +1443,17 @@
                 } else if (r.type === 'section') {
                     aoa.push([r.text, '']);
                     merges.push({ s: { r: ri, c: 0 }, e: { r: ri, c: 1 } });
-                    styles[ri + ',0'] = { font: { bold: true, sz: 11, color: { rgb: WHITE } }, fill: { fgColor: { rgb: BLUE } }, alignment: { vertical: 'center' } };
-                    styles[ri + ',1'] = { fill: { fgColor: { rgb: BLUE } } };
+                    const secFill = r.highlight ? HL_SECTION : BLUE;
+                    styles[ri + ',0'] = { font: { bold: true, sz: 11, color: { rgb: WHITE } }, fill: { fgColor: { rgb: secFill } }, alignment: { vertical: 'center' } };
+                    styles[ri + ',1'] = { fill: { fgColor: { rgb: secFill } } };
                 } else if (r.type === 'field') {
                     aoa.push([r.label, r.value]);
-                    styles[ri + ',0'] = { font: { bold: true, sz: 10, color: { rgb: NAVY } }, fill: { fgColor: { rgb: LIGHT } }, alignment: { vertical: 'top', wrapText: true }, border: border };
-                    styles[ri + ',1'] = { font: { sz: 10, color: { rgb: '2C3E50' } }, alignment: { vertical: 'top', wrapText: true }, border: border };
+                    const labelFill = r.highlight ? HL_LABEL : LIGHT;
+                    const valueFill = r.highlight ? HL_VALUE : null;
+                    styles[ri + ',0'] = { font: { bold: true, sz: 10, color: { rgb: NAVY } }, fill: { fgColor: { rgb: labelFill } }, alignment: { vertical: 'top', wrapText: true }, border: border };
+                    const valStyle = { font: { sz: 10, color: { rgb: '2C3E50' } }, alignment: { vertical: 'top', wrapText: true }, border: border };
+                    if (valueFill) valStyle.fill = { fgColor: { rgb: valueFill } };
+                    styles[ri + ',1'] = valStyle;
                 }
             });
             const ws = XLSX.utils.aoa_to_sheet(aoa);
