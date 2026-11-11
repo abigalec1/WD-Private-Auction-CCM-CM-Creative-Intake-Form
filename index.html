@@ -306,6 +306,32 @@
             cursor: pointer;
         }
         .checklist-items { display: flex; flex-direction: column; gap: 8px; }
+        .wdr-reminder {
+            background: #fdecea;
+            border: 2px solid #d32f2f;
+            border-left: 6px solid #d32f2f;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-top: 16px;
+        }
+        .wdr-reminder .wdr-title {
+            color: #b71c1c;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .wdr-reminder .wdr-body {
+            color: #b71c1c;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .wdr-reminder .wdr-ack {
+            color: #b71c1c;
+            padding-top: 10px;
+            border-top: 1px solid #f5b5b0;
+        }
+        .wdr-reminder .wdr-ack input[type="checkbox"] { accent-color: #d32f2f; }
         .checklist-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; cursor: pointer; }
         .checklist-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #067D62; cursor: pointer; }
 
@@ -666,6 +692,18 @@
                         <span>I confirm that all required assets listed above are attached in the creative request assignment.</span>
                     </label>
                 </div>
+            </div>
+
+            <!-- #WDR routing reminder (required acknowledgment, all tabs) -->
+            <div class="wdr-reminder">
+                <div class="wdr-title">⚠️ REQUIRED: Add #WDR to the creative request assignment</div>
+                <div class="wdr-body">
+                    Before submitting, go into the <b>creative request assignment</b>, open the <b>"Additional Information"</b> section, and add <b>#WDR</b>. This routes the request to the correct trained designer. Requests without <b>#WDR</b> may be routed incorrectly.
+                </div>
+                <label class="checkbox-label wdr-ack">
+                    <input type="checkbox" id="wdrAcknowledge">
+                    <span>I have added <b>#WDR</b> to the "Additional Information" section of the creative request assignment.</span>
+                </label>
             </div>
 
         </form>
@@ -1207,6 +1245,7 @@
         fields.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
         document.querySelectorAll('.asset-check').forEach(cb => cb.checked = false);
         document.getElementById('assetConfirmation').checked = false;
+        document.getElementById('wdrAcknowledge').checked = false;
         document.getElementById('category').value = 'general';
         updateCharCounters();
     }
@@ -1239,6 +1278,11 @@
 
         if (!document.getElementById('assetConfirmation').checked) {
             alert('Please confirm that all required assets are attached in the creative request assignment.');
+            return;
+        }
+
+        if (!document.getElementById('wdrAcknowledge').checked) {
+            alert('🚫 Export blocked\n\nPlease add #WDR to the "Additional Information" section of the creative request assignment, then check the acknowledgment box so the request is routed to the correct trained designer.');
             return;
         }
 
